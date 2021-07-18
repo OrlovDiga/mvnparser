@@ -37,6 +37,7 @@ type MavenProject struct {
 	Version              string               `xml:"version"`
 	Packaging            string               `xml:"packaging"`
 	Name                 string               `xml:"name"`
+	Description          string               `xml:"description"`
 	Repositories         []Repository         `xml:"repositories>repository"`
 	Properties           Properties           `xml:"properties"`
 	DependencyManagement DependencyManagement `xml:"dependencyManagement"`
