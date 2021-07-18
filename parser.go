@@ -29,86 +29,86 @@ import (
 
 // Represent a POM file
 type MavenProject struct {
-	XMLName              xml.Name             `xml:"project"`
-	ModelVersion         string               `xml:"modelVersion"`
-	Parent               Parent               `xml:"parent"`
-	GroupId              string               `xml:"groupId"`
-	ArtifactId           string               `xml:"artifactId"`
-	Version              string               `xml:"version"`
-	Packaging            string               `xml:"packaging"`
-	Name                 string               `xml:"name"`
-	Description          string               `xml:"description"`
-	Repositories         []Repository         `xml:"repositories>repository"`
-	Properties           Properties           `xml:"properties"`
-	DependencyManagement DependencyManagement `xml:"dependencyManagement"`
-	Dependencies         []Dependency         `xml:"dependencies>dependency"`
-	Profiles             []Profile            `xml:"profiles"`
-	Build                Build                `xml:"build"`
-	PluginRepositories   []PluginRepository   `xml:"pluginRepositories>pluginRepository"`
-	Modules              []string             `xml:"modules>module"`
+	XMLName              xml.Name             `xml:"project,omitempty"`
+	ModelVersion         string               `xml:"modelVersion,omitempty"`
+	Parent               Parent               `xml:"parent,omitempty"`
+	GroupId              string               `xml:"groupId,omitempty"`
+	ArtifactId           string               `xml:"artifactId,omitempty"`
+	Version              string               `xml:"version,omitempty"`
+	Packaging            string               `xml:"packaging,omitempty"`
+	Name                 string               `xml:"name,omitempty"`
+	Description          string               `xml:"description,omitempty"`
+	Repositories         []Repository         `xml:"repositories>repository,omitempty"`
+	Properties           Properties           `xml:"properties,omitempty"`
+	DependencyManagement DependencyManagement `xml:"dependencyManagement,omitempty"`
+	Dependencies         []Dependency         `xml:"dependencies>dependency,omitempty"`
+	Profiles             []Profile            `xml:"profiles,omitempty,omitempty"`
+	Build                Build                `xml:"build,omitempty"`
+	PluginRepositories   []PluginRepository   `xml:"pluginRepositories>pluginRepository,omitempty"`
+	Modules              []string             `xml:"modules>module,omitempty"`
 }
 
 // Represent the parent of the project
 type Parent struct {
-	GroupId    string `xml:"groupId"`
-	ArtifactId string `xml:"artifactId"`
-	Version    string `xml:"version"`
+	GroupId    string `xml:"groupId,omitempty"`
+	ArtifactId string `xml:"artifactId,omitempty"`
+	Version    string `xml:"version,omitempty"`
 }
 
 // Represent a dependency of the project
 type Dependency struct {
-	XMLName    xml.Name    `xml:"dependency"`
-	GroupId    string      `xml:"groupId"`
-	ArtifactId string      `xml:"artifactId"`
-	Version    string      `xml:"version"`
-	Classifier string      `xml:"classifier"`
-	Type       string      `xml:"type"`
-	Scope      string      `xml:"scope"`
-	Exclusions []Exclusion `xml:"exclusions>exclusion"`
+	XMLName    xml.Name    `xml:"dependency,omitempty"`
+	GroupId    string      `xml:"groupId,omitempty"`
+	ArtifactId string      `xml:"artifactId,omitempty"`
+	Version    string      `xml:"version,omitempty"`
+	Classifier string      `xml:"classifier,omitempty"`
+	Type       string      `xml:"type,omitempty"`
+	Scope      string      `xml:"scope,omitempty"`
+	Exclusions []Exclusion `xml:"exclusions>exclusion,omitempty"`
 }
 
 // Represent an exclusion
 type Exclusion struct {
-	XMLName    xml.Name `xml:"exclusion"`
-	GroupId    string   `xml:"groupId"`
-	ArtifactId string   `xml:"artifactId"`
+	XMLName    xml.Name `xml:"exclusion,omitempty"`
+	GroupId    string   `xml:"groupId,omitempty"`
+	ArtifactId string   `xml:"artifactId,omitempty"`
 }
 
 type DependencyManagement struct {
-	Dependencies []Dependency `xml:"dependencies>dependency"`
+	Dependencies []Dependency `xml:"dependencies>dependency,omitempty"`
 }
 
 // Represent a repository
 type Repository struct {
-	Id   string `xml:"id"`
-	Name string `xml:"name"`
-	Url  string `xml:"url"`
+	Id   string `xml:"id,omitempty"`
+	Name string `xml:"name,omitempty"`
+	Url  string `xml:"url,omitempty"`
 }
 
 type Profile struct {
-	Id    string `xml:"id"`
-	Build Build  `xml:"build"`
+	Id    string `xml:"id,omitempty"`
+	Build Build  `xml:"build,omitempty"`
 }
 
 type Build struct {
 	// todo: final name ?
-	Plugins []Plugin `xml:"plugins>plugin"`
+	Plugins []Plugin `xml:"plugins>plugin,omitempty"`
 }
 
 type Plugin struct {
-	XMLName    xml.Name `xml:"plugin"`
-	GroupId    string   `xml:"groupId"`
-	ArtifactId string   `xml:"artifactId"`
-	Version    string   `xml:"version"`
+	XMLName    xml.Name `xml:"plugin,omitempty"`
+	GroupId    string   `xml:"groupId,omitempty"`
+	ArtifactId string   `xml:"artifactId,omitempty"`
+	Version    string   `xml:"version,omitempty"`
 	//todo something like: Configuration map[string]string `xml:"configuration"`
 	// todo executions
 }
 
 // Represent a pluginRepository
 type PluginRepository struct {
-	Id   string `xml:"id"`
-	Name string `xml:"name"`
-	Url  string `xml:"url"`
+	Id   string `xml:"id,omitempty"`
+	Name string `xml:"name,omitempty"`
+	Url  string `xml:"url,omitempty"`
 }
 
 // Represent Properties
