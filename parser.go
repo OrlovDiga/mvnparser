@@ -135,3 +135,25 @@ func (p *Properties) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error 
 	}
 	return nil
 }
+
+func (s Properties) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+
+	tokens := []xml.Token{start}
+
+	for key, value := range s {
+		t := xml.StartElement{Name: xml.Name{"", key}}
+		tokens = append(tokens, t, xml.CharData(value), xml.EndElement{t.Name})
+	}
+
+	tokens = append(tokens, xml.EndElement{start.Name})
+
+	for _, t := range tokens {
+		err := e.EncodeToken(t)
+		if err != nil {
+			return err
+		}
+	}
+
+	// flush to ensure tokens are written
+	return e.Flush()
+}
